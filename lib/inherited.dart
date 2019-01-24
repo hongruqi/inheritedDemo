@@ -8,8 +8,9 @@ class MyInheritedWidget extends StatefulWidget{
 
   MyInheritedWidgetState createState() => new MyInheritedWidgetState();
 
-  static MyInheritedWidgetState of(BuildContext context){
-    return (context.inheritFromWidgetOfExactType(_MyInherited) as _MyInherited).data;
+  static MyInheritedWidgetState of([BuildContext context, bool rebuild = true]){
+    return (rebuild ? context.inheritFromWidgetOfExactType(_MyInherited) as _MyInherited
+        : context.ancestorWidgetOfExactType(_MyInherited) as _MyInherited).data;
   }
 
 }
